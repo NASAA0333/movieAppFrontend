@@ -1,16 +1,13 @@
 "use client";
+import { CategoryType } from "@/app/type";
 import { useState, useEffect } from "react";
-type CategoryType = {
-  categoryName: string;
-  _id: string;
-};
 
-export default function Home() {
+export default function Categories() {
   const [categories, setCategories] = useState<CategoryType[]>([]);
 
   const addCategory = async () => {
     const categoryName = prompt("Enter new category name");
-    const response = await fetch("http://localhost:8000/food-category", {
+    const response = await fetch("http://localhost:7000/food-category", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -21,7 +18,7 @@ export default function Home() {
     setCategories([...categories, data.newItem]);
   };
   async function fetchAll() {
-    const res = await fetch(`http://localhost:8000/food-category`, {
+    const res = await fetch(`http://localhost:7000/food-category`, {
       method: "GET",
       headers: {
         Accept: "application/json",
@@ -38,7 +35,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="bg-white w-full h-auto py-6 px-8 rounded-xl shadow-md">
+    <div className="bg-black w-full h-auto py-6 px-8 rounded-xl shadow-md flex flex-col">
       <h4 className="text-[18px] font-semibold mb-4">Dishes category</h4>
       <div className="flex flex-wrap items-center gap-4">
         {categories?.map((category) => (
