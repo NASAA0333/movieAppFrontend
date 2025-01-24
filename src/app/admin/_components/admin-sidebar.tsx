@@ -6,8 +6,8 @@ import { Settings } from "lucide-react";
 import Link from "next/link";
 export default function SideBar() {
   return (
-    <div className="w-[205px] min-h-[1024px] bg-white">
-      <div className="flex items-center justify-center ">
+    <div className="w-[205px] min-h-[1024px] bg-white text-black flex flex-col items-center justify-start">
+      <div className="flex items-center justify-center pr-5 pt-5">
         <div className="items-center justify-center flex size-[40px] text-red-500">
           <HandPlatter />
         </div>

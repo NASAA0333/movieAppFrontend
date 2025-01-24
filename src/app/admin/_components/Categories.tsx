@@ -35,7 +35,7 @@ export default function Categories() {
   }, []);
 
   return (
-    <div className="bg-black w-full h-auto py-6 px-8 rounded-xl shadow-md flex flex-col">
+    <div className="bg-white text-black w-full h-auto py-6 px-8 rounded-xl shadow-md flex flex-col">
       <h4 className="text-[18px] font-semibold mb-4">Dishes category</h4>
       <div className="flex flex-wrap items-center gap-4">
         {categories?.map((category) => (
@@ -44,9 +44,9 @@ export default function Categories() {
             className="flex items-center justify-center px-4 py-2 border border-gray-300 rounded-full text-gray-700 text-sm font-medium"
           >
             {category.categoryName}
-            <span className="ml-2 bg-black text-white rounded-full px-2 py-1 text-xs">
+            {/* <span className="ml-2 bg-black text-white rounded-full px-2 py-1 text-xs">
               {category._id}
-            </span>
+            </span> */}
           </div>
         ))}
         <button
