@@ -3,6 +3,16 @@
 import { FoodType } from "@/app/type";
 import { useState, useEffect } from "react";
 
+interface AddDishProps {
+  categoryName: string;
+  setFood: React.Dispatch<React.SetStateAction<any>>;
+  food: any;
+  handleUpload: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange: (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => void;
+}
+
 export default function AddFoods() {
   const [addFoodCard, setAddFoodCard] = useState<FoodType[]>([]);
   const [imageDrop, setImageDrop] = useState(null);
@@ -32,10 +42,6 @@ export default function AddFoods() {
     setAddFoodCard(data);
   }
 
-  useEffect(() => {
-    fetchAll();
-  }, []);
-
   return (
     <div className="bg-white text-black w-full h-auto py-6 px-8 rounded-xl shadow-md flex flex-col">
       <div className="flex flex-col items-center justify-center w-[270px] h-[241px]">
@@ -60,11 +66,11 @@ export default function AddFoods() {
         </div>
       ))}
       <input className=" w-full h-full" type="file" id="proFileImage" />{" "}
-      {imageDrop ? (
+      {/* {imageDrop ? (
         <img src={imageDrop} className="w-full h-full rounded-[8px]" />
       ) : (
         <input className="hidden w-full h-full" type="file" id="proFileImage" />
-      )}
+      )} */}
     </div>
   );
 }
