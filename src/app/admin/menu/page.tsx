@@ -2,7 +2,7 @@
 
 import { Categories } from "../_components/Categories";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Dishes } from "@/app/Dishes";
+import { Dishes } from "../_components/Dishes";
 
 export default function Menu() {
   return (

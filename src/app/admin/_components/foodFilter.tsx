@@ -1,6 +1,6 @@
 "use client";
-
 import { useEffect, useState } from "react";
+
 import { Card } from "@/components/ui/card";
 import { CardComp } from "./card";
 import { AddDish } from "./addDishes";
@@ -18,7 +18,7 @@ export const FilteredFood = ({ _id, categoryName }: CategoryType) => {
 
   useEffect(() => {
     const fetchFood = async () => {
-      const response = await fetch("http://localhost:8000/food");
+      const response = await fetch("http://localhost:7000/food");
       const data = await response.json();
       setFoods(data);
     };

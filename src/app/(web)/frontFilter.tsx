@@ -1,21 +1,12 @@
 "use client";
-
 import { useEffect, useState } from "react";
+
 import { Card } from "@/components/ui/card";
-import { AddDish } from "./admin/_components/addDishes";
-import { CategoryType } from "./type";
-import { CardComp } from "./admin/_components/card";
 
-export type FoodType = {
-  _id: string;
-  foodName: string;
-  price: number;
-  image: string;
-  ingredients: string;
-  category: string;
-};
+import { CategoryType, FoodType } from "@/app/type";
+import { CardComp } from "../admin/_components/card";
 
-export const FilteredFood = ({ _id, categoryName }: CategoryType) => {
+export const FrontFilter = ({ _id, categoryName }: CategoryType) => {
   const [foods, setFoods] = useState<FoodType[]>();
   const [food, setFood] = useState({
     name: "",
@@ -27,7 +18,7 @@ export const FilteredFood = ({ _id, categoryName }: CategoryType) => {
 
   useEffect(() => {
     const fetchFood = async () => {
-      const response = await fetch("http://localhost:8000/food");
+      const response = await fetch("http://localhost:7000/food");
       const data = await response.json();
       setFoods(data);
     };
@@ -62,20 +53,11 @@ export const FilteredFood = ({ _id, categoryName }: CategoryType) => {
       setFood((prev: any) => ({ ...prev, image: dataJson.secure_url }));
     }
   };
-
+  console.log(foods);
   return (
-    <div className="w-full p-5 flex flex-col gap-5 rounded-xl bg-background">
+    <div className="w-full p-5 flex flex-col gap-5 rounded-xl">
       <h4 className=" text-xl font-semibold  ">{categoryName}</h4>
       <div className="flex flex-wrap gap-4">
-        <Card className="border border-dashed border-red-500 px-2 py-4 w-[270.75px] h-[241px] flex flex-col items-center  justify-center ">
-          <AddDish
-            categoryName={categoryName}
-            food={food}
-            setFood={setFood}
-            onChange={onChange}
-            handleUpload={handleUpload}
-          />
-        </Card>
         {foods?.map(
           (food) =>
             food.category === _id && (

@@ -1,9 +1,10 @@
 "use client";
-import { Dishes } from "@/app/Dishes";
+
 import { Categories } from "../../_components/Categories";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 import { useParams } from "next/navigation";
+import { Dishes } from "../../_components/Dishes";
 
 export default function Home() {
   const params = useParams();

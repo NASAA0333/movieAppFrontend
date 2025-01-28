@@ -4,7 +4,8 @@ const Footer = () => {
   return (
     <footer className="bg-[#18181B] w-full h-[auto]">
       <div className="  w-full h-[92px] bg-[#EF4444] text-white text-[30px] font-[600] flex items-center justify-center overflow-hidden ">
-        <div className="text-animation-infinite-scroll flex gap-6">
+        <div className="text-animation-infinite-scroll w-screen flex gap-[400px]">
+          <p>Fresh fast delivery</p>
           <p>Fresh fast delivery</p>
           <p>Fresh fast delivery</p>
           <p>Fresh fast delivery</p>

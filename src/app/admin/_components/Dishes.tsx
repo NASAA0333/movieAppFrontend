@@ -1,15 +1,16 @@
 "use client";
 import { useEffect, useState } from "react";
-import { FilteredFood } from "./admin/_components/foodFilter";
-import { CategoryType } from "./type";
+
 import { useParams } from "next/navigation";
+import { FilteredFood } from "./foodFilter";
+import { CategoryType } from "@/app/type";
 
 export const Dishes = () => {
   const [foodCategory, setFoodCategory] = useState<CategoryType[]>();
   const params = useParams();
   useEffect(() => {
     const fetchCategory = async () => {
-      const response = await fetch("http://localhost:8000/food-category/");
+      const response = await fetch("http://localhost:7000/food-category/");
       const data = await response.json();
       setFoodCategory(data);
     };
