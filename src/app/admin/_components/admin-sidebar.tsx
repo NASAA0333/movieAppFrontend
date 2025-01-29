@@ -26,7 +26,10 @@ export default function SideBar() {
             </button>
           </Link>
           <Link href="/admin/orders">
-            <button className="flex items-center gap-2 mt-4">
+            <button
+              className="flex items-center gap-2 mt-4 "
+              // onClick={() => {}}
+            >
               <Car /> Orders
             </button>
           </Link>
