@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 
 import { Card } from "@/components/ui/card";
-import { CardComp } from "./card";
+import { CardComp } from "./editFood";
 import { AddDish } from "./addDishes";
 import { CategoryType, FoodType } from "@/app/type";
 

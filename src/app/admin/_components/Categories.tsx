@@ -16,11 +16,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Link from "next/link";
-
-type CategoryType = {
-  categoryName: string;
-  _id: string;
-};
+import { CategoryType } from "@/app/type";
 
 export const Categories = () => {
   const [foodCategory, setFoodCategory] = useState<CategoryType[]>();
@@ -46,6 +42,7 @@ export const Categories = () => {
       body: JSON.stringify({ categoryName: newCategory }),
     });
     setNewCategory("");
+    window.location.reload();
   };
 
   return (
@@ -94,7 +91,11 @@ export const Categories = () => {
                 pattern="[A-Za-z]"
               />
             </div>
-            <DialogFooter>
+            <DialogFooter
+            // onClick={() => {
+            //   Categories();
+            // }}
+            >
               <DialogClose asChild>
                 <Button
                   type="submit"

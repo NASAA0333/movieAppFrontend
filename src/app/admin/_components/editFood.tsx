@@ -14,15 +14,33 @@ import {
 import { Label } from "@radix-ui/react-label";
 import { Input } from "@/components/ui/input";
 
-export const CardComp = ({ food, id, onChange }: any) => {
-  const [editFood, setEditFood] = useState({
+export const CardComp = ({ food, id }: any) => {
+  const [foodName, setFoodName] = useState("");
+  const [price, setPrice] = useState(0);
+  const [ingredients, setIngredients] = useState("");
+  const [image, setImage] = useState("");
+
+  const [editFood, setEditFood] = useState<any>({
     name: "",
     price: 0,
     ingredients: "",
     image: "",
     category: id,
   });
-  console.log(food);
+
+  const FoodEdited = async (id) => {
+    const data = await fetch(`http://localhost:7000/food/${id}`, {
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      method: "PUT",
+      body: JSON.stringify(food),
+    });
+    const updated: any = await data.json();
+    // window.location.reload();
+  };
+  console.log(food._id);
   return (
     <Card className="border bg-background p-4 w-[270.75px] h-[241px] flex flex-col gap-5 items-center  justify-center">
       <div
@@ -33,9 +51,12 @@ export const CardComp = ({ food, id, onChange }: any) => {
           <DialogTitle className=" text-center ">
             <DialogTrigger
               asChild
-              className=" w-6 h-6 bg-white rounded-full p-3"
+              className=" w-[44px] h-[44px] bg-white rounded-full p-3"
             >
-              <Pencil color="red" />
+              <button className="felx items-center justify-center w-[44px] h-[44px]">
+                {" "}
+                <Pencil color="red" className="size-4 pl-1" />
+              </button>
             </DialogTrigger>
           </DialogTitle>
           <DialogContent className="flex flex-col gap-6 p-6">
@@ -45,7 +66,10 @@ export const CardComp = ({ food, id, onChange }: any) => {
             <div className="flex">
               <Label htmlFor="foodName">Food name</Label>
               <Input
-                value={food?.name}
+                onChange={(editFood) =>
+                  setEditFood({ ...editFood, name: food.name })
+                }
+                defaultValue={food?.name}
                 id="foodName"
                 name="name"
                 type="text"
@@ -55,9 +79,12 @@ export const CardComp = ({ food, id, onChange }: any) => {
             <div className="grid w-full items-center gap-1.5">
               <Label htmlFor="foodPrice">Food price</Label>
               <Input
+                onChange={(editFood) =>
+                  setEditFood({ ...editFood, price: food.price })
+                }
                 id="foodPrice"
                 name="price"
-                value={food?.price}
+                defaultValue={food?.price}
                 type="number"
                 placeholder="Enter price..."
               />
@@ -65,9 +92,12 @@ export const CardComp = ({ food, id, onChange }: any) => {
             <div className="flex flex-col w-full  gap-1.5">
               <label htmlFor="ingredients">Ingredients</label>
               <textarea
+                onChange={(editFood) =>
+                  setEditFood({ ...editFood, ingredients: food.ingredients })
+                }
                 id="ingredients"
                 name="ingredients"
-                value={food?.ingredients}
+                defaultValue={food?.ingredients}
                 rows={4}
                 cols={50}
                 className="border rounded-md py-2 px-4  text-sm font-normal "
@@ -113,7 +143,13 @@ export const CardComp = ({ food, id, onChange }: any) => {
             <DialogFooter className="pt-6 flex justify-center">
               <Trash className="text-red-500" />
               <DialogClose asChild>
-                <Button>Save Changes</Button>
+                <Button
+                  onClick={() => {
+                    FoodEdited(food._id);
+                  }}
+                >
+                  Save Changes
+                </Button>
               </DialogClose>
             </DialogFooter>
           </DialogContent>

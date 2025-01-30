@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { Card } from "@/components/ui/card";
 
 import { CategoryType, FoodType } from "@/app/type";
-import { CardComp } from "../admin/_components/card";
+import { CardComp } from "../admin/_components/editFood";
 
 export const FrontFilter = ({ _id, categoryName }: CategoryType) => {
   const [foods, setFoods] = useState<FoodType[]>();
