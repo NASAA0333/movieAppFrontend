@@ -71,12 +71,7 @@ export const FilteredFood = ({ _id, categoryName }: CategoryType) => {
           (food) =>
             food.category === _id && (
               <div key={food._id}>
-                <CardComp
-                  food={food}
-                  id={food._id}
-                  onChange={onChange}
-                  handleUpload={handleUpload}
-                />
+                <CardComp food={food} setFoods={setFoods} foods={foods} />
               </div>
             )
         )}

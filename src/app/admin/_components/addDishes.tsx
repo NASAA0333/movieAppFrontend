@@ -124,7 +124,7 @@ export const AddDish = ({
             id="image"
             name="image"
             type="file"
-            placeholder="Enter price..."
+            placeholder="Enter image..."
             className="hidden"
             onChange={handleUpload}
           />

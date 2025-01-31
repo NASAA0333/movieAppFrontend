@@ -1,10 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
-
-import { Card } from "@/components/ui/card";
-
 import { CategoryType, FoodType } from "@/app/type";
-import { CardComp } from "../admin/_components/editFood";
+import { FoodSelect } from "./foodSelect";
 
 export const FrontFilter = ({ _id, categoryName }: CategoryType) => {
   const [foods, setFoods] = useState<FoodType[]>();
@@ -53,7 +50,7 @@ export const FrontFilter = ({ _id, categoryName }: CategoryType) => {
       setFood((prev: any) => ({ ...prev, image: dataJson.secure_url }));
     }
   };
-  console.log(foods);
+
   return (
     <div className="w-full p-5 flex flex-col gap-5 rounded-xl">
       <h4 className=" text-xl font-semibold  ">{categoryName}</h4>
@@ -62,7 +59,7 @@ export const FrontFilter = ({ _id, categoryName }: CategoryType) => {
           (food) =>
             food.category === _id && (
               <div key={food._id}>
-                <CardComp
+                <FoodSelect
                   food={food}
                   id={food._id}
                   onChange={onChange}

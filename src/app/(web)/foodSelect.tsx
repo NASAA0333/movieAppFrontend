@@ -3,7 +3,7 @@
 import { Card } from "@/components/ui/card";
 import React, { use, useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Pencil, X, Trash } from "lucide-react";
+import { Plus } from "lucide-react";
 import {
   Dialog,
   DialogClose,
@@ -13,57 +13,10 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { Label } from "@radix-ui/react-label";
-import { Input } from "@/components/ui/input";
 
-export const CardComp = ({ food, foods, setFoods }: any) => {
-  const [editFood, setEditFood] = useState<any>({
-    name: "",
-    price: 0,
-    ingredients: "",
-    image: "",
-    category: "",
-  });
+export const FoodSelect = ({ food }: any) => {
+  console.log(food, "food");
 
-  const save = async () => {
-    try {
-      const response = await fetch(`http://localhost:7000/food/${food._id}`, {
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        method: "PUT",
-        body: JSON.stringify(editFood),
-      });
-
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-
-      const updated = await response.json();
-    } catch (error) {}
-  };
-
-  useEffect(() => {
-    setEditFood(food);
-  }, [food]);
-
-  const deleteFood = async ({}: any) => {
-    try {
-      fetch(`http://localhost:7000/food/${food._id}`, {
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        method: "DELETE",
-      }).then(() => {
-        const otherFoods = foods.filter((f: any) => f._id !== food._id);
-        setFoods(otherFoods);
-      });
-    } catch (error) {
-      console.error("Failed to delete food:", error);
-    }
-  };
   return (
     <Card className="border bg-background p-4 w-[270.75px] h-[241px] flex flex-col gap-5 items-center  justify-center">
       <div
@@ -77,16 +30,29 @@ export const CardComp = ({ food, foods, setFoods }: any) => {
               className=" w-[44px] h-[44px] bg-white rounded-full p-3"
             >
               <button className="felx items-center justify-center w-[44px] h-[44px]">
-                {" "}
-                <Pencil color="red" className="size-4 pl-1" />
+                <Plus className="size-4 pl-1 text-red-600" />
               </button>
             </DialogTrigger>
           </DialogTitle>
           <DialogContent className="flex flex-col gap-6 p-6">
             <DialogHeader className="pb-4 grid gap-4">
-              <DialogTitle>Dishes info</DialogTitle>
+              <DialogTitle>{food.image}</DialogTitle>
             </DialogHeader>
-            <div className="flex">
+          </DialogContent>
+        </Dialog>
+      </div>
+      <div className="grid gap-2">
+        <div className="flex justify-between">
+          <span className="text-red-500 ">{food?.foodName}</span>
+          <span>${food.price}</span>
+        </div>
+        <h4 className="text-xs">{food.ingredients}</h4>
+      </div>
+    </Card>
+  );
+};
+{
+  /* <div className="flex">
               <Label htmlFor="foodName">Food name</Label>
               <Input
                 onChange={(e) =>
@@ -139,9 +105,7 @@ export const CardComp = ({ food, foods, setFoods }: any) => {
                     variant="outline"
                     className="rounded-full px-3 py-5"
                     onClick={() => {}}
-                  >
-                    <X />
-                  </Button>
+                  ></Button>
                 </div>
               ) : (
                 <Label
@@ -159,31 +123,8 @@ export const CardComp = ({ food, foods, setFoods }: any) => {
                 id="image"
                 name="image"
                 type="file"
-                placeholder="Enter image..."
+                placeholder="Enter price..."
                 className="hidden"
-                onChange={(e) =>
-                  setEditFood({ ...editFood, ingredients: e.target.files })
-                }
               />
-            </div>
-            <DialogFooter className="pt-6 flex justify-center">
-              <DialogClose asChild>
-                <div className="flex gap-2">
-                  <Trash className="text-red-500" onClick={deleteFood} />
-                  <Button onClick={save}>Save Changes</Button>
-                </div>
-              </DialogClose>
-            </DialogFooter>
-          </DialogContent>
-        </Dialog>
-      </div>
-      <div className="grid gap-2">
-        <div className="flex justify-between">
-          <span className="text-red-500 ">{food?.foodName}</span>
-          <span>${food.price}</span>
-        </div>
-        <h4 className="text-xs">{food.ingredients}</h4>
-      </div>
-    </Card>
-  );
-};
+            </div> */
+}
